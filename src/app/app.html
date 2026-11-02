@@ -1,0 +1,14 @@
+<main class="setup-card">
+  <p class="eyebrow">Mi journal personal · Paso 1</p>
+  <h1>Historias para recordar</h1>
+  <p>La base de tu registro de series, películas, libros y anime está lista.</p>
+  <p class="status" role="status">
+    {{
+      supabase.isConfigured
+        ? 'Configuración de Supabase presente. La conexión se verificará en el paso de login.'
+        : 'Pendiente: configura tu URL y clave pública de Supabase en el environment.'
+    }}
+  </p>
+  <p class="note">El acceso privado y las fichas se implementarán en los próximos pasos.</p>
+</main>
+<router-outlet />

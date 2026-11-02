@@ -1,0 +1,36 @@
+:root {
+  color-scheme: light;
+  --color-primary: #e76814;
+  --color-secondary: #dc8236;
+  --color-paper: #d8d4bc;
+  --color-accent: #b8210f;
+  --color-deep: #891a10;
+  --color-ink: #714236;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: var(--color-ink);
+  background: var(--color-paper);
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100dvh;
+  padding: 1.25rem;
+  background-image:
+    linear-gradient(#71423614 1px, transparent 1px),
+    linear-gradient(90deg, #71423614 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+:focus-visible {
+  outline: 3px solid var(--color-deep);
+  outline-offset: 4px;
+}
