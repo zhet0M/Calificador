@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { SupabaseService } from './core/services/supabase.service';
+import { Component, effect, inject } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
+import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,5 +10,14 @@ import { SupabaseService } from './core/services/supabase.service';
   styleUrl: './app.scss',
 })
 export class App {
-  protected readonly supabase = inject(SupabaseService);
+  protected readonly auth = inject(AuthService);
+  private readonly router = inject(Router);
+
+  constructor() {
+    effect(() => {
+      if (this.auth.initialized() && !this.auth.session()) {
+        void this.router.navigateByUrl('/login', { replaceUrl: true });
+      }
+    });
+  }
 }

@@ -1,0 +1,42 @@
+<article class="item-card" [attr.aria-label]="item().nombre">
+  <div class="cover">
+    @if (photoUrl() && !imageFailed()) {
+      <img
+        [src]="photoUrl()"
+        [alt]="'Portada de ' + item().nombre"
+        loading="lazy"
+        decoding="async"
+        (error)="onImageError()"
+      />
+    } @else {
+      <div class="cover-placeholder">
+        <span aria-hidden="true">✧</span><span>{{ label() }}</span
+        ><small>Sin foto</small>
+      </div>
+    }
+    <span class="type-label">{{ label() }}</span>
+  </div>
+  <div class="card-copy">
+    <h3>{{ item().nombre }}</h3>
+    <div class="ratings">
+      <span class="stars" role="img" [attr.aria-label]="stars() + ' de 5 estrellas'">
+        @for (slot of starSlots; track slot) {
+          <span [class.filled]="slot <= stars()" aria-hidden="true">★</span>
+        }
+      </span>
+      <span
+        class="score"
+        [attr.aria-label]="
+          item().nota_final === null ? 'Sin nota final' : 'Nota final ' + score() + ' de 10'
+        "
+        >{{ score() }}<small>/10</small></span
+      >
+    </div>
+    <a
+      class="edit-link"
+      [routerLink]="['/items', item().id, 'edit']"
+      [attr.aria-label]="'Editar ficha ' + item().nombre"
+      >Editar ficha ↗</a
+    >
+  </div>
+</article>

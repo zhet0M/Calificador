@@ -1,0 +1,136 @@
+:host {
+  display: block;
+  min-width: 0;
+  margin-bottom: 1.2rem;
+}
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  min-width: 0;
+}
+legend {
+  margin-bottom: 0.5rem;
+  font:
+    0.75rem 'Trebuchet MS',
+    sans-serif;
+}
+.time-fields {
+  display: flex;
+  align-items: end;
+  gap: 0.5rem;
+}
+.time-fields > div:first-child {
+  flex: 1;
+  min-width: 0;
+}
+label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font:
+    0.65rem 'Trebuchet MS',
+    sans-serif;
+}
+.hours-control {
+  display: flex;
+  min-width: 0;
+}
+input,
+select {
+  min-height: 44px;
+  padding: 0.65rem 0.5rem;
+  min-width: 0;
+  border: 1px solid #71423645;
+  background: #fffdf8;
+  color: var(--color-ink);
+  font:
+    0.8rem 'Trebuchet MS',
+    sans-serif;
+}
+input {
+  flex: 1;
+  width: 3.5rem;
+  text-align: center;
+  border-inline: 0;
+  border-radius: 0;
+}
+select {
+  border-radius: 0.6rem;
+  min-width: 4rem;
+}
+.hours-control button {
+  flex-shrink: 0;
+  width: 2rem;
+  min-height: 44px;
+  padding: 0;
+  border: 1px solid #71423645;
+  background: #dc823615;
+  color: var(--color-ink);
+  cursor: pointer;
+}
+.hours-control button:first-child {
+  border-radius: 0.6rem 0 0 0.6rem;
+}
+.hours-control button:last-child {
+  border-radius: 0 0.6rem 0.6rem 0;
+}
+.colon {
+  align-self: end;
+  padding-bottom: 0.7rem;
+}
+.duration-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+small {
+  font:
+    0.6rem/1.7 'Trebuchet MS',
+    sans-serif;
+}
+small span {
+  color: #886e61;
+}
+.clear {
+  border: 0;
+  background: transparent;
+  color: var(--color-deep);
+  padding: 0.3rem 0;
+  text-decoration: underline;
+  font-size: 0.65rem;
+  cursor: pointer;
+}
+.error {
+  color: var(--color-deep);
+  font-size: 0.7rem;
+}
+.legacy {
+  border: 1px dashed #71423635;
+  border-radius: 0.6rem;
+  padding: 0.8rem;
+}
+.legacy p {
+  margin: 0 0 0.5rem;
+  overflow-wrap: anywhere;
+  font-size: 0.8rem;
+}
+.legacy button {
+  background: #fffaf2;
+  border: 1px solid #71423645;
+  border-radius: 999px;
+  color: var(--color-ink);
+  padding: 0.6rem;
+  cursor: pointer;
+  font-size: 0.7rem;
+}
+.legacy small {
+  display: block;
+  margin-top: 0.5rem;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}

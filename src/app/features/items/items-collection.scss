@@ -1,0 +1,218 @@
+.collection {
+  margin-top: 3rem;
+}
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.eyebrow {
+  font:
+    0.62rem/1.5 'Trebuchet MS',
+    sans-serif;
+  letter-spacing: 0.18em;
+  margin: 0 0 0.45rem;
+}
+h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+}
+h2 span {
+  color: var(--color-primary);
+}
+.add-action {
+  text-align: right;
+}
+.add-button {
+  padding: 0.75rem 1.1rem;
+  border: 1px solid #71423650;
+  border-radius: 999px;
+  color: var(--color-ink);
+  background: #d8d4bc66;
+  font-size: 0.85rem;
+  display: inline-block;
+  text-decoration: none;
+}
+.add-action small {
+  display: block;
+  margin-top: 0.5rem;
+  font:
+    0.6rem 'Trebuchet MS',
+    sans-serif;
+}
+.collection-tools {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+.search-field,
+.genre-field {
+  display: grid;
+  gap: 0.5rem;
+  flex: 1 1 18rem;
+  max-width: 30rem;
+}
+.genre-field {
+  flex: 1 1 14rem;
+  max-width: 20rem;
+}
+.search-field label,
+.genre-field label {
+  font:
+    0.75rem 'Trebuchet MS',
+    sans-serif;
+}
+input,
+select {
+  width: 100%;
+  min-height: 46px;
+  padding: 0.75rem 1rem;
+  background: #fffaf2;
+  color: var(--color-ink);
+  border: 1px solid #71423640;
+  border-radius: 0.8rem;
+  font:
+    0.85rem 'Trebuchet MS',
+    sans-serif;
+}
+input::placeholder {
+  color: #805c50;
+}
+.type-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.type-filters button {
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: #d8d4bc55;
+  color: var(--color-ink);
+  padding: 0.7rem 0.9rem;
+  min-height: 44px;
+  font:
+    0.7rem 'Trebuchet MS',
+    sans-serif;
+  cursor: pointer;
+}
+.type-filters button[aria-pressed='true'] {
+  background: var(--color-ink);
+  color: #fffaf2;
+}
+.results {
+  margin-top: 1.5rem;
+}
+.result-count {
+  font:
+    0.7rem 'Trebuchet MS',
+    sans-serif;
+  margin-block: 1rem;
+}
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+.status-panel {
+  background: #fffaf2;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  border: 1px solid #71423620;
+  border-radius: 1.1rem;
+}
+.status-panel h3 {
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin: 0.75rem 0;
+}
+.status-panel p {
+  font:
+    0.85rem/1.7 'Trebuchet MS',
+    sans-serif;
+}
+.empty-mark {
+  font-size: 2rem;
+  color: var(--color-secondary);
+}
+.text-button {
+  border: 0;
+  background: transparent;
+  color: var(--color-deep);
+  padding: 0.6rem 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+.photo-warning {
+  padding: 0.75rem 1rem;
+  background: #dc823618;
+  border-radius: 0.8rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  font:
+    0.7rem 'Trebuchet MS',
+    sans-serif;
+}
+.pagination button {
+  min-height: 44px;
+  padding: 0.65rem 1rem;
+  border: 1px solid #71423640;
+  border-radius: 999px;
+  background: #fffaf2;
+  color: var(--color-ink);
+  cursor: pointer;
+}
+.pagination button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+@media (max-width: 1000px) {
+  .items-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 720px) {
+  .items-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .collection {
+    margin-top: 2.2rem;
+  }
+}
+@media (max-width: 420px) {
+  .items-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .section-heading {
+    align-items: start;
+  }
+  .add-button {
+    padding: 0.65rem 0.8rem;
+    font-size: 0.75rem;
+  }
+  .add-action small {
+    max-width: 7.5rem;
+  }
+  .pagination {
+    flex-wrap: wrap;
+  }
+  .pagination span {
+    order: 3;
+    flex-basis: 100%;
+    text-align: center;
+  }
+}

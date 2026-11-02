@@ -1,0 +1,210 @@
+:host {
+  display: block;
+  margin: -1.25rem;
+}
+.collection-page {
+  --surface: #fffaf2;
+  min-height: 100svh;
+  padding: 0 clamp(1.25rem, 5vw, 5rem);
+  background: #f6f0e5;
+  color: var(--color-ink);
+}
+.page-header,
+main,
+.page-footer {
+  max-width: 1280px;
+  margin-inline: auto;
+}
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  min-height: 112px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.brand-mark {
+  display: grid;
+  place-items: center;
+  height: 2.8rem;
+  width: 2.8rem;
+  border: 1px solid #71423640;
+  border-radius: 50%;
+  color: var(--color-primary);
+  font-size: 2rem;
+}
+.brand small {
+  display: block;
+  font:
+    0.55rem/1.8 'Trebuchet MS',
+    sans-serif;
+  letter-spacing: 0.16em;
+}
+.logout {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  min-height: 44px;
+  border: 1px solid #71423645;
+  border-radius: 999px;
+  padding: 0.65rem 1.1rem;
+  background: transparent;
+  color: var(--color-ink);
+  font:
+    0.75rem 'Trebuchet MS',
+    sans-serif;
+  cursor: pointer;
+}
+.logout:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+.welcome {
+  position: relative;
+  isolation: isolate;
+  min-height: 450px;
+  overflow: hidden;
+  border-radius: 1.6rem;
+  background: #714236 url('/login/autumn.webp') center 55% / cover;
+  color: #fff5e4;
+}
+.welcome-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #3f1f13ed, #71423655 65%, #7142360a);
+  z-index: -1;
+}
+.welcome-copy {
+  position: relative;
+  z-index: 1;
+  padding: clamp(2rem, 4vw, 3.5rem);
+  padding-bottom: 5rem;
+  width: 60%;
+}
+.eyebrow {
+  font:
+    0.62rem/1.5 'Trebuchet MS',
+    sans-serif;
+  letter-spacing: 0.18em;
+  margin: 0 0 1rem;
+}
+h1 {
+  font-size: clamp(2.7rem, 4.8vw, 4.6rem);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  margin: 0 0 1.2rem;
+}
+h1 em {
+  color: #ffd3a2;
+}
+.welcome-copy > p:not(.eyebrow) {
+  font:
+    0.85rem/1.8 'Trebuchet MS',
+    sans-serif;
+  color: #f5e6d4;
+}
+
+.welcome-fox {
+  position: absolute;
+  width: 47%;
+  height: 86%;
+  object-fit: contain;
+  right: 4%;
+  bottom: 3rem;
+}
+.welcome-dedication {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  inset-inline: 0;
+  margin: 0;
+  padding: 0.85rem 1rem;
+  text-align: center;
+  color: #fff5e4;
+  font:
+    italic clamp(0.8rem, 1.2vw, 1rem) / 1.5 Georgia,
+    serif;
+  background: linear-gradient(transparent, #38170cbb);
+  text-shadow: 0 1px 4px #38170c;
+}
+
+.page-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 2rem;
+  font:
+    0.65rem/1.5 'Trebuchet MS',
+    sans-serif;
+  color: #714236;
+}
+.account {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  overflow-wrap: anywhere;
+}
+.account-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .page-header {
+    min-height: 90px;
+  }
+  .brand {
+    font-size: 1.2rem;
+    gap: 0.5rem;
+  }
+  .brand-mark {
+    width: 2.1rem;
+    height: 2.1rem;
+    font-size: 1.6rem;
+  }
+  .brand small {
+    font-size: 0.45rem;
+  }
+  .logout {
+    gap: 0.6rem;
+    font-size: 0.65rem;
+    padding-inline: 0.8rem;
+  }
+  .welcome {
+    min-height: 600px;
+  }
+  .welcome-copy {
+    width: 100%;
+    padding: 1.7rem;
+  }
+  h1 {
+    font-size: 3rem;
+  }
+  .welcome-copy > p:not(.eyebrow) {
+    font-size: 0.8rem;
+  }
+
+  .welcome-fox {
+    width: 69%;
+    height: 42%;
+    right: 5%;
+    bottom: 3.5rem;
+  }
+
+  .page-footer {
+    flex-direction: column;
+    align-items: start;
+    gap: 0.75rem;
+  }
+}

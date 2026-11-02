@@ -1,0 +1,255 @@
+:host {
+  display: block;
+  margin: -1.25rem;
+}
+.editor-page {
+  min-height: 100svh;
+  padding: 0 clamp(1rem, 4vw, 4rem) 3rem;
+  background: #f6f0e5;
+  color: var(--color-ink);
+}
+.editor-header,
+.editor-paper,
+.message {
+  max-width: 1120px;
+  margin-inline: auto;
+}
+.editor-header {
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+a {
+  color: var(--color-ink);
+  text-underline-offset: 4px;
+}
+.back-link {
+  font:
+    0.8rem 'Trebuchet MS',
+    sans-serif;
+  text-decoration: none;
+}
+.editor-brand {
+  font-size: 1.2rem;
+}
+.editor-brand span {
+  color: var(--color-primary);
+}
+.editor-paper {
+  background: #fffaf2;
+  border: 1px solid #71423630;
+  border-radius: 1.5rem;
+  padding: clamp(1.25rem, 4vw, 3rem);
+  box-shadow: 0 1rem 3rem #71423608;
+}
+.paper-header {
+  border-bottom: 1px solid #71423625;
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+.eyebrow {
+  font:
+    0.65rem 'Trebuchet MS',
+    sans-serif;
+  letter-spacing: 0.17em;
+  color: var(--color-deep);
+}
+h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 400;
+  margin: 0.7rem 0;
+  letter-spacing: -0.04em;
+}
+.paper-header > p:last-child {
+  font:
+    0.8rem/1.8 'Trebuchet MS',
+    sans-serif;
+}
+.form-lock {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.journal-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+.photo-column {
+  min-width: 0;
+}
+.rating-stack {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed #71423640;
+}
+h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  font:
+    0.7rem 'Trebuchet MS',
+    sans-serif;
+  color: var(--color-secondary);
+  margin: 0 0 1.5rem;
+}
+h2 span {
+  color: var(--color-ink);
+  font:
+    1.5rem Georgia,
+    serif;
+}
+.field {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+  min-width: 0;
+}
+label {
+  font:
+    0.75rem 'Trebuchet MS',
+    sans-serif;
+}
+input,
+select,
+textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  border: 1px solid #71423645;
+  border-radius: 0.6rem;
+  padding: 0.75rem;
+  background: #fffdf8;
+  color: var(--color-ink);
+  font:
+    0.85rem/1.5 'Trebuchet MS',
+    sans-serif;
+}
+textarea {
+  resize: vertical;
+}
+input::placeholder,
+textarea::placeholder {
+  color: #886e61;
+}
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+.form-section {
+  border-top: 1px solid #71423625;
+  margin-top: 2rem;
+  padding-top: 2rem;
+}
+.section-help,
+small {
+  font:
+    0.7rem/1.7 'Trebuchet MS',
+    sans-serif;
+}
+.section-help {
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+}
+.final-score {
+  max-width: 14rem;
+}
+.final-score input {
+  font:
+    2rem Georgia,
+    serif;
+}
+.submitted input.ng-invalid,
+.submitted select.ng-invalid,
+.submitted textarea.ng-invalid {
+  border: 2px solid var(--color-accent);
+}
+.field-error {
+  color: var(--color-deep);
+  font-size: 0.75rem;
+}
+.form-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border-top: 1px solid #71423625;
+  padding-top: 1.5rem;
+  margin-top: 1rem;
+}
+.form-footer > span {
+  font:
+    0.65rem 'Trebuchet MS',
+    sans-serif;
+}
+.form-footer > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+}
+.form-footer a {
+  font-size: 0.8rem;
+}
+.primary-button {
+  font-size: 0.85rem;
+}
+.notice {
+  border: 1px solid #dc823650;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  background: #dc823610;
+  margin-block: 1rem;
+  font-size: 0.85rem;
+}
+.notice button,
+.message button {
+  padding: 0.6rem 1rem;
+  background: #fffaf2;
+  color: var(--color-ink);
+  border: 1px solid #71423645;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+@media (max-width: 900px) {
+  .journal-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .photo-column {
+    max-width: 24rem;
+    width: 100%;
+    margin-inline: auto;
+  }
+  .editor-header {
+    min-height: 80px;
+  }
+}
+@media (max-width: 420px) {
+  .field-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+  .editor-brand {
+    font-size: 1rem;
+  }
+  h2 span {
+    font-size: 1.25rem;
+  }
+  .form-footer > div {
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem;
+  }
+}

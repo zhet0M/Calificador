@@ -1,0 +1,40 @@
+@if (auth.session()) {
+  <div class="collection-page">
+    <header class="page-header">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">✺</span
+        ><span>mi journal<small>TU COLECCIÓN PERSONAL</small></span>
+      </div>
+      <button type="button" class="logout" (click)="signOut()" [disabled]="busy()">
+        {{ busy() ? 'Cerrando sesión…' : 'Cerrar sesión' }} <span aria-hidden="true">↗</span>
+      </button>
+    </header>
+    <main>
+      @if (error()) {
+        <p role="alert" class="form-error">{{ error() }}</p>
+      }
+      <section class="welcome" aria-labelledby="welcome-title">
+        <div class="welcome-shade" aria-hidden="true"></div>
+        <div class="welcome-copy">
+          <p class="eyebrow">BIENVENIDA A TU RINCÓN</p>
+          <h1 id="welcome-title">Hay historias<br />que se quedan<br /><em>contigo.</em></h1>
+          <p>Este es el lugar para volver a ellas.<br />A lo que viste, leíste y sentiste.</p>
+        </div>
+        <img
+          class="welcome-fox"
+          src="/login/fox.webp"
+          alt="Zorrito con lentes y un té de burbujas"
+          fetchpriority="high"
+        />
+        <p class="welcome-dedication">Hecho con amor para mi princesita karlita</p>
+      </section>
+      <app-items-collection />
+    </main>
+    <footer class="page-footer">
+      <span>Guarda historias. Conserva emociones.</span
+      ><span class="account"
+        ><span class="account-dot" aria-hidden="true"></span>{{ auth.user()?.email }}</span
+      >
+    </footer>
+  </div>
+}

@@ -1,0 +1,276 @@
+@if (auth.user()?.id === ownerId) {
+  <div class="editor-page">
+    <header class="editor-header">
+      <a routerLink="/items" class="back-link">← Mis historias</a
+      ><span class="editor-brand"><span aria-hidden="true">✺</span> mi journal</span>
+    </header>
+    @if (loading()) {
+      <main class="message" role="status">Abriendo tu ficha…</main>
+    } @else if (loadError()) {
+      <main class="message" role="alert">
+        <h1>No pudimos abrir esta página</h1>
+        <p>{{ loadError() }}</p>
+        <button type="button" (click)="load()">Reintentar</button>
+      </main>
+    } @else {
+      <main class="editor-paper">
+        <header class="paper-header">
+          <p class="eyebrow">FICHA DE {{ typeLabel() }}</p>
+          <h1>{{ editing ? 'Volver a esta historia.' : 'Una nueva historia.' }}</h1>
+          <p>Los detalles cambian. Lo que te hizo sentir, se queda.</p>
+        </header>
+        @if (saved()) {
+          <div class="notice" role="status">
+            Tu ficha está guardada. <a routerLink="/items">Volver a mis historias →</a>
+          </div>
+        }
+        @if (cleanupPath()) {
+          <div class="notice" role="status">
+            <p>
+              {{
+                saved()
+                  ? 'La ficha se guardó, pero falta borrar una foto anterior.'
+                  : 'Queda una foto pendiente de limpieza.'
+              }}
+            </p>
+            <button type="button" (click)="cleanup()" [disabled]="busy()">
+              Reintentar limpieza de foto
+            </button>
+          </div>
+        }
+        <form
+          [formGroup]="form"
+          (ngSubmit)="save()"
+          class="editor-form"
+          [class.submitted]="submitted()"
+          [attr.aria-busy]="busy()"
+        >
+          <fieldset class="form-lock" [disabled]="busy() || saved()">
+            <legend class="sr-only">Ficha de {{ typeLabel() }}</legend>
+            <div class="journal-grid">
+              <aside class="photo-column">
+                <app-photo-picker
+                  [existingUrl]="existingPhotoUrl()"
+                  [hasExisting]="!!existingPhotoPath()"
+                  [disabled]="busy() || saved()"
+                  (changed)="photoChanged($event)"
+                  (processingChange)="processingPhoto.set($event)"
+                />
+                <div class="rating-stack">
+                  <app-icon-rating
+                    label="Estrellas"
+                    name="stars"
+                    [control]="form.controls.estrellas"
+                  />
+                  <app-icon-rating
+                    label="Corazones"
+                    name="hearts"
+                    icon="heart"
+                    [control]="form.controls.corazones"
+                  />
+                  <app-icon-rating
+                    label="Gotas"
+                    name="drops"
+                    icon="drop"
+                    [control]="form.controls.gotas"
+                  />
+                </div>
+              </aside>
+              <section class="identity" aria-labelledby="identity-title">
+                <h2 id="identity-title">01 <span>El comienzo de la historia</span></h2>
+                <div class="field">
+                  <label for="item-type">Tipo</label
+                  ><select id="item-type" formControlName="tipo">
+                    @for (option of types; track option.value) {
+                      <option [value]="option.value">{{ option.singular }}</option>
+                    }
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="item-name">Nombre <span aria-hidden="true">*</span></label
+                  ><input
+                    id="item-name"
+                    formControlName="nombre"
+                    required
+                    aria-describedby="name-error"
+                    [attr.aria-invalid]="
+                      form.controls.nombre.touched && form.controls.nombre.invalid
+                    "
+                  />
+                  @if (form.controls.nombre.touched && form.controls.nombre.invalid) {
+                    <small id="name-error" class="field-error"
+                      >Escribe el nombre de esta historia.</small
+                    >
+                  }
+                </div>
+                <app-character-editor formControlName="personajes" />
+                <div class="field-row">
+                  <div class="field">
+                    <label for="start">{{ book() ? 'Inicio de lectura' : 'Inicio' }}</label
+                    ><input id="start" type="date" formControlName="inicio" />
+                  </div>
+                  <div class="field">
+                    <label for="end">{{ book() ? 'Fin de lectura' : 'Fin' }}</label
+                    ><input id="end" type="date" formControlName="fin" />
+                  </div>
+                </div>
+                @if (form.hasError('dateOrder')) {
+                  <p class="field-error" role="alert">
+                    La fecha de fin no puede ser anterior al inicio.
+                  </p>
+                }
+                <div class="field">
+                  <label for="platform">{{
+                    book() ? 'Editorial / dónde lo leíste' : 'Plataforma'
+                  }}</label
+                  ><input id="platform" formControlName="plataforma" />
+                </div>
+                <div class="field-row">
+                  <div class="field">
+                    <label for="episodes">{{
+                      book()
+                        ? 'Capítulos'
+                        : type() === 'pelicula'
+                          ? 'Partes / entregas'
+                          : 'Episodios'
+                    }}</label
+                    ><input
+                      id="episodes"
+                      type="number"
+                      min="0"
+                      max="2147483647"
+                      step="1"
+                      formControlName="episodios"
+                    />
+                  </div>
+                  <app-duration-editor
+                    formControlName="duracion"
+                    [label]="book() ? 'Tiempo de lectura' : 'Duración'"
+                    tabindex="-1"
+                  />
+                </div>
+                <div class="field-row">
+                  <div class="field">
+                    <label for="country">País</label><input id="country" formControlName="pais" />
+                  </div>
+                  <div class="field">
+                    <label for="recommend">¿Lo recomiendo?</label
+                    ><select id="recommend" formControlName="lo_recomiendo">
+                      <option [ngValue]="null">Sin decidir</option>
+                      <option [ngValue]="true">Sí</option>
+                      <option [ngValue]="false">No</option>
+                    </select>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <section class="form-section" aria-labelledby="favorites-title">
+              <h2 id="favorites-title">02 <span>Lo que se queda contigo</span></h2>
+              <div class="field-row">
+                <div class="field">
+                  <label for="fav-episode">{{
+                    book()
+                      ? 'Capítulo favorito'
+                      : type() === 'pelicula'
+                        ? 'Escena favorita'
+                        : 'Episodio favorito'
+                  }}</label
+                  ><input id="fav-episode" formControlName="episodio_fav" />
+                </div>
+                <div class="field">
+                  <label for="fav-character">Personaje favorito</label
+                  ><input id="fav-character" formControlName="personaje_fav" />
+                </div>
+              </div>
+              <div class="field">
+                <label for="fav-quote">Frase favorita</label
+                ><textarea id="fav-quote" rows="3" formControlName="frase_fav"></textarea>
+              </div>
+            </section>
+            <section class="form-section" aria-labelledby="genres-title">
+              <h2 id="genres-title">03 <span>Sus géneros y matices</span></h2>
+              <p class="section-help">
+                Activa los géneros que quieras calificar. Sin activar significa sin nota; 0 también
+                es una calificación.
+              </p>
+              <app-genre-editor [form]="form" />
+            </section>
+            <section class="form-section" aria-labelledby="describe-title">
+              <h2 id="describe-title">04 <span>Lo describo con…</span></h2>
+              <div class="field-row">
+                <div class="field">
+                  <label for="color">Un color</label
+                  ><input
+                    id="color"
+                    formControlName="color"
+                    placeholder="Ámbar, terracota, #E76814…"
+                  />
+                </div>
+                <div class="field">
+                  <label for="word">Una palabra</label><input id="word" formControlName="palabra" />
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="food">Una comida</label><input id="food" formControlName="comida" />
+                </div>
+                <div class="field">
+                  <label for="ost">{{ book() ? 'Música que le pondrías' : 'OST favorito' }}</label
+                  ><input id="ost" formControlName="ost_favorito" />
+                </div>
+              </div>
+            </section>
+            <section class="form-section" aria-labelledby="review-title">
+              <h2 id="review-title">05 <span>Mi reseña</span></h2>
+              <div class="field final-score">
+                <label for="final-score">Nota final / 10</label
+                ><input
+                  id="final-score"
+                  type="number"
+                  min="0"
+                  max="10"
+                  step="0.1"
+                  formControlName="nota_final"
+                  placeholder="8,5"
+                /><small>De 0 a 10, con hasta un decimal.</small>
+              </div>
+              <div class="field">
+                <label for="review">¿Qué te dejó esta historia?</label
+                ><textarea
+                  id="review"
+                  rows="8"
+                  formControlName="resena"
+                  placeholder="Escribe a tu manera. Esta página es tuya."
+                ></textarea>
+              </div>
+            </section>
+          </fieldset>
+          @if (error()) {
+            <p class="form-error" role="alert">{{ error() }}</p>
+          }
+          <div class="form-footer">
+            <span>Solo el nombre es obligatorio.</span>
+            <div>
+              <a routerLink="/items">{{ saved() ? 'Volver al listado' : 'Cancelar' }}</a
+              ><button
+                class="primary-button"
+                type="submit"
+                [disabled]="busy() || processingPhoto() || saved()"
+              >
+                {{
+                  busy()
+                    ? 'Guardando…'
+                    : processingPhoto()
+                      ? 'Preparando foto…'
+                      : saved()
+                        ? 'Guardada'
+                        : 'Guardar mi ficha'
+                }}
+              </button>
+            </div>
+          </div>
+        </form>
+      </main>
+    }
+  </div>
+}

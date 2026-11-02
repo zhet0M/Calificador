@@ -1,0 +1,91 @@
+:host {
+  display: block;
+  margin-bottom: 1.2rem;
+  min-width: 0;
+}
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  min-width: 0;
+}
+legend {
+  margin-bottom: 0.65rem;
+  font:
+    0.75rem 'Trebuchet MS',
+    sans-serif;
+}
+.characters {
+  display: grid;
+  gap: 0.6rem;
+}
+.character-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+.character-row label {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  background: #dc823620;
+  color: var(--color-ink);
+  font-size: 0.75rem;
+}
+input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0.75rem;
+  border: 1px solid #71423645;
+  border-radius: 0.6rem;
+  background: #fffdf8;
+  color: var(--color-ink);
+  font:
+    0.85rem 'Trebuchet MS',
+    sans-serif;
+}
+button {
+  color: var(--color-ink);
+  background: transparent;
+  cursor: pointer;
+}
+.remove {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.75rem;
+  border: 0;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+}
+.remove:hover {
+  background: #b8210f10;
+}
+.add {
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.8rem;
+  min-height: 40px;
+  border: 1px solid #71423645;
+  border-radius: 999px;
+  font-size: 0.75rem;
+}
+.help,
+.empty {
+  font:
+    0.65rem/1.7 'Trebuchet MS',
+    sans-serif;
+}
+.empty {
+  margin: 0;
+  padding: 1rem;
+  border: 1px dashed #71423635;
+  border-radius: 0.6rem;
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}

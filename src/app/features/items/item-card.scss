@@ -1,0 +1,96 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+.edit-link {
+  display: inline-block;
+  padding-top: 1rem;
+  color: var(--color-deep);
+  font-size: 0.8rem;
+  text-underline-offset: 3px;
+}
+.item-card {
+  height: 100%;
+  background: #fffaf2;
+  border: 1px solid #71423620;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.cover {
+  position: relative;
+  aspect-ratio: 4/3;
+  background: #eee3cd;
+}
+.cover img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+.cover-placeholder {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--color-ink);
+  background: radial-gradient(circle at 50% 30%, #fff8e7, #d8d4bc);
+}
+.cover-placeholder > span:first-child {
+  font-size: 2.5rem;
+  color: var(--color-secondary);
+}
+.cover-placeholder small {
+  font:
+    0.65rem 'Trebuchet MS',
+    sans-serif;
+}
+.type-label {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  background: #fffaf2ee;
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  color: var(--color-deep);
+  font:
+    0.7rem 'Trebuchet MS',
+    sans-serif;
+}
+.card-copy {
+  padding: 1.1rem;
+}
+h3 {
+  font-weight: 400;
+  font-size: 1.3rem;
+  margin: 0 0 1rem;
+  overflow-wrap: anywhere;
+  line-height: 1.3;
+}
+.ratings {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.stars {
+  color: #c9bca8;
+  letter-spacing: 0.1em;
+  font-size: 1.05rem;
+}
+.stars .filled {
+  color: #b55318;
+}
+.score {
+  color: var(--color-deep);
+  font-size: 1.2rem;
+}
+.score small {
+  font:
+    0.65rem 'Trebuchet MS',
+    sans-serif;
+  color: var(--color-ink);
+  margin-left: 0.15rem;
+}

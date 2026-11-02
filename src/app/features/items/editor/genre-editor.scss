@@ -1,0 +1,71 @@
+.genre-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.genre-block {
+  border: 1px solid #71423625;
+  background: #fffaf2;
+  padding: 1rem;
+  border-radius: 0.8rem;
+}
+.genre-toggle {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  font-size: 0.9rem;
+  min-height: 2rem;
+}
+input[type='checkbox'] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--color-ink);
+}
+.genre-score {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-block: 0.5rem;
+}
+input[type='range'] {
+  min-width: 0;
+  flex: 1;
+  accent-color: var(--color-secondary);
+}
+output {
+  min-width: 3rem;
+  font-size: 0.85rem;
+}
+small {
+  font-size: 0.7rem;
+  color: #805c50;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+button {
+  padding: 0.5rem 0.65rem;
+  border: 1px solid #71423635;
+  background: #f6f0e5;
+  border-radius: 999px;
+  color: var(--color-ink);
+  font:
+    0.65rem 'Trebuchet MS',
+    sans-serif;
+  cursor: pointer;
+  min-height: 36px;
+}
+button[aria-pressed='true'] {
+  background: var(--color-ink);
+  color: #fffaf2;
+}
+.selected p {
+  font-size: 0.85rem;
+}
+@media (max-width: 600px) {
+  .genre-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,115 @@
+<section class="collection" aria-labelledby="collection-title">
+  <header class="section-heading">
+    <div>
+      <p class="eyebrow">HECHO DE RECUERDOS</p>
+      <h2 id="collection-title">Mis historias<span aria-hidden="true">.</span></h2>
+    </div>
+    <div class="add-action">
+      <a routerLink="/items/new" class="add-button">+ Agregar ficha</a>
+    </div>
+  </header>
+  <div class="collection-tools">
+    <div class="search-field">
+      <label for="story-search">Buscar por nombre</label
+      ><input
+        id="story-search"
+        type="search"
+        [formControl]="searchControl"
+        placeholder="Esa historia que no olvidas…"
+        autocomplete="off"
+      />
+    </div>
+    <div class="genre-field">
+      <label for="story-genre">Género</label>
+      <select id="story-genre" [formControl]="genreControl">
+        <option value="all">Todos los géneros</option>
+        @for (option of genres; track option.value) {
+          <option [value]="option.value">{{ option.label }}</option>
+        }
+      </select>
+    </div>
+    <div class="type-filters" role="group" aria-label="Filtrar por tipo">
+      <button type="button" [attr.aria-pressed]="type() === 'all'" (click)="selectType('all')">
+        Todas
+      </button>
+      @for (option of types; track option.value) {
+        <button
+          type="button"
+          [attr.aria-pressed]="type() === option.value"
+          (click)="selectType(option.value)"
+        >
+          {{ option.label }}
+        </button>
+      }
+    </div>
+  </div>
+  <div class="results" [attr.aria-busy]="loading()">
+    @if (loading()) {
+      <p class="status-panel" role="status">Abriendo tus historias…</p>
+    } @else if (error()) {
+      <div class="status-panel" role="alert">
+        <h3>No pudimos abrir esta página</h3>
+        <p>{{ error() }}</p>
+        <button type="button" class="text-button" (click)="reload()">Reintentar</button>
+      </div>
+    } @else {
+      <p class="result-count" role="status">
+        {{ total() }} {{ total() === 1 ? 'historia encontrada' : 'historias encontradas' }}
+      </p>
+      @if (photoWarning()) {
+        <div class="photo-warning" role="status">
+          Algunas fotos no están disponibles.
+          <button type="button" class="text-button" (click)="refreshPhotos()">
+            Reintentar fotos
+          </button>
+        </div>
+      }
+      @if (items().length) {
+        <div class="items-grid">
+          @for (item of items(); track item.id) {
+            <app-item-card
+              [item]="item"
+              [photoUrl]="item.foto_path ? photos()[item.foto_path] : undefined"
+              (photoError)="photoWarning.set(true)"
+            />
+          }
+        </div>
+        @if (pageCount() > 1) {
+          <nav class="pagination" aria-label="Páginas de historias">
+            <button type="button" (click)="changePage(-1)" [disabled]="page() === 0">
+              Anterior</button
+            ><span
+              >{{ rangeStart() }}–{{ rangeEnd() }} de {{ total() }} · Página {{ page() + 1 }} de
+              {{ pageCount() }}</span
+            ><button type="button" (click)="changePage(1)" [disabled]="page() + 1 >= pageCount()">
+              Siguiente
+            </button>
+          </nav>
+        }
+      } @else {
+        <div class="status-panel">
+          <span class="empty-mark" aria-hidden="true">✧</span>
+          <h3>
+            {{
+              filtered()
+                ? 'Ninguna historia coincide todavía'
+                : 'Tu primera historia está por llegar'
+            }}
+          </h3>
+          <p>
+            {{
+              filtered()
+                ? 'Prueba otro nombre, tipo o género.'
+                : 'Tus fichas aparecerán aquí cuando las agregues a tu journal.'
+            }}
+          </p>
+          @if (filtered()) {
+            <button type="button" class="text-button" (click)="clearFilters()">
+              Limpiar filtros
+            </button>
+          }
+        </div>
+      }
+    }
+  </div>
+</section>
